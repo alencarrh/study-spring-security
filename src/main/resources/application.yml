@@ -2,17 +2,10 @@ logging:
   level:
     root: INFO
 
-spring:
-  application:
-    name: class1
-  datasource:
-    url: jdbc:postgresql://localhost:5432/estudo_db
-    username: estudo_user
-    password: estudo
-  jpa:
-    hibernate:
-      ddl-auto: validate
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
+
+
+our:
+  very:
+    very:
+      secure:
+        key: "x-secret"
