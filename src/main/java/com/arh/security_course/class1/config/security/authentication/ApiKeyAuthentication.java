@@ -1,28 +1,25 @@
 package com.arh.security_course.class1.config.security.authentication;
 
+import java.util.Collection;
+import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
-import java.util.List;
-
 @Setter
 @Getter
 @RequiredArgsConstructor
-public class CustomAuthentication implements Authentication {
+public class ApiKeyAuthentication implements Authentication {
 
-  private final boolean authenticated;
+  private boolean authenticated;
   private final String key;
 
   @Override
   public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-
+    this.authenticated = isAuthenticated;
   }
-
-
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
