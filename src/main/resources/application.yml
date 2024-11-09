@@ -3,6 +3,21 @@ logging:
     root: INFO
 
 
+spring:
+  application:
+    name: class1
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authserver_db
+    username: authserver_user
+    password: authserver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
 
 our:
   very:

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 @RequiredArgsConstructor
+@EnableMethodSecurity()
 public class SecurityConfiguration {
 
   @Value("${our.very.very.secure.key}")
@@ -24,13 +26,16 @@ public class SecurityConfiguration {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.httpBasic(withDefaults())
         .addFilterBefore(new ApiKeyFilter(key), BasicAuthenticationFilter.class)
-        .authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
+        .authorizeHttpRequests(
+            ar -> {
+              ar.anyRequest().authenticated();
+            })
         .build();
   }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
     return NoOpPasswordEncoder.getInstance();
-    // return new BCryptPasswordEncoder();
+    //    return new BCryptPasswordEncoder();
   }
 }
