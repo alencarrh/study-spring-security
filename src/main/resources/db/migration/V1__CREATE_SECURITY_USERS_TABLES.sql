@@ -4,14 +4,14 @@ CREATE TABLE users
     username VARCHAR(50)  NOT NULL,
     password VARCHAR(100) NOT NULL
 );
-GRANT ALL ON SEQUENCE users_id_seq TO estudo_user;
+GRANT ALL ON SEQUENCE users_id_seq TO authserver_user;
 
 CREATE TABLE authorities
 (
     id bigserial PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
-GRANT ALL ON SEQUENCE authorities_id_seq TO estudo_user;
+GRANT ALL ON SEQUENCE authorities_id_seq TO authserver_user;
 
 
 CREATE TABLE users_authorities
